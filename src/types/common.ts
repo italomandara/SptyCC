@@ -5,4 +5,11 @@ export type LeaguesData = {
   strLeagueAlternate: string;
 };
 
+export type SeasonsData = {
+  strSeason: string;
+  strBadge: string;
+};
+
+export type SeasonsListData = SeasonsData[];
+
 export type LeaguesListData = LeaguesData[];

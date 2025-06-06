@@ -1,20 +1,37 @@
-import { useMemo } from "react";
 import SPLeaguesFilters from "../components/SPLeaguesFilters";
 import SPLeaguesList from "../components/SPLeaguesList";
-import data from "../mocks/AllLeaguesAPI.json";
-import { useAppStore } from "../stateManagement/stateManagement";
-import { filterFn } from "../util/filters";
+import { Box } from "@mui/material";
+import { useLeaguesData } from "../hooks/leaguesData";
+import SPPage from "../components/SPPage";
+
 const Home = () => {
-  const sportFilter = useAppStore((state) => state.sportFilter);
-  const leagueFilter = useAppStore((state) => state.leagueFilter);
-  const rows = useMemo(() => {
-    return filterFn(data.leagues, leagueFilter, sportFilter);
-  }, [sportFilter, leagueFilter]);
+  const { isPending, error, rows } = useLeaguesData();
+
+  if (isPending) {
+    return (
+      <SPPage title="Leagues List">
+        <Box mt={2} mb={2}>
+          Loading...
+        </Box>
+      </SPPage>
+    );
+  }
+
+  if (error) {
+    return (
+      <SPPage title="Leagues List">
+        <Box mt={2} mb={2}>
+          Error: {error.message}
+        </Box>
+      </SPPage>
+    );
+  }
+
   return (
-    <div className="home">
-      <SPLeaguesFilters />
-      <SPLeaguesList rows={rows} />
-    </div>
+    <SPPage title="Leagues List">
+      <SPLeaguesFilters mt={2} mb={2} />
+      <SPLeaguesList rows={rows} mb={2} />
+    </SPPage>
   );
 };
 export default Home;

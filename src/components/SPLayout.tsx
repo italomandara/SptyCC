@@ -1,7 +1,7 @@
 import { Outlet } from "react-router";
 import SPContainer from "./SPContainer";
 
-const Layout = () => {
+const SPLayout = () => {
   return (
     <div className="layout">
       <SPContainer>
@@ -11,4 +11,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default SPLayout;

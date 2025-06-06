@@ -7,17 +7,20 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { LeaguesListData } from "../types/common";
 
-const SPLeaguesList = ({ rows }: { rows: LeaguesListData }) => {
-  const headers = ["League", "Sport", "League Alternate"]; //rudimentary but ok for this use case (code challenge)
+import { SPLeaguesListProps } from "./SPLeaguesList.types";
+import { Link } from "react-router";
+
+const HEADERS = ["League", "Sport", "League Alternate"];
+
+const SPLeaguesList = ({ rows, mb, mt }: SPLeaguesListProps) => {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ mb, mt }}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            {headers.map((label) => (
-              <TableCell>{label}</TableCell>
+            {HEADERS.map((label, i) => (
+              <TableCell key={label}>{label}</TableCell>
             ))}
           </TableRow>
         </TableHead>
@@ -28,7 +31,7 @@ const SPLeaguesList = ({ rows }: { rows: LeaguesListData }) => {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell align="left" component="th" scope="row">
-                {row.strLeague}
+                <Link to={`/seasons/${row.idLeague}`}>{row.strLeague}</Link>
               </TableCell>
               <TableCell align="left">{row.strSport}</TableCell>
               <TableCell align="left">{row.strLeagueAlternate}</TableCell>
