@@ -26,7 +26,7 @@ export const useLeaguesData = () => {
       : [];
   }, [sportFilter, leagueFilter, data]);
 
-  return { isPending, error, rows };
+  return { isPending, error, rows, data: data?.data.leagues || [] };
 };
 
 export const useSingleLeagueData = (id: string) => {

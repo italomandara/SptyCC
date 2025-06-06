@@ -23,7 +23,7 @@ const SPLeaguesFilters = ({
   const setSportFilter = useAppStore((state) => state.setSportFilter);
   const setLeagueFilter = useAppStore((state) => state.setLeagueFilter);
 
-  const { rows: data } = useLeaguesData();
+  const { data } = useLeaguesData();
   const options: Options = mapWithoutDups(data);
 
   return (
