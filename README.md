@@ -21,3 +21,4 @@ To do:
 - refactor (some types need to be split into separate files, some constants has been left into components and the styles could be split into separate files)
 - better responsive layout (at the moment I'm using a table which isn't suitable for responsive layouts)
 - better layout design and theme I'm using base MUI elements without customization or theme
+- table pagination (probably using the dataGrid component from MUI)

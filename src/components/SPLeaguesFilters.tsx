@@ -8,23 +8,8 @@ import {
 } from "@mui/material";
 import { Options } from "./SPLeaguesFilters.types";
 import { useAppStore } from "../stateManagement/stateManagement";
-import data from "../mocks/AllLeaguesAPI.json";
-
-// done for convenience, options should be either coming directly from the DB (separate endpoint possibly) or a hardcoded enum/dictionary/array
-const mapWithoutDups = (): Options => {
-  const dict: { [key: string]: string } = {};
-  data.leagues.forEach((option) => {
-    if (!dict[option.strSport]) {
-      dict[option.strSport] = option.strSport;
-    }
-  });
-  return Object.entries(dict).map(([label, value]) => ({
-    label,
-    value,
-  }));
-};
-
-const options: Options = mapWithoutDups();
+import { useLeaguesData } from "../hooks/leaguesData";
+import { mapWithoutDups } from "../util/filters";
 
 const SPLeaguesFilters = ({
   mb,
@@ -37,6 +22,9 @@ const SPLeaguesFilters = ({
   const leagueFilter = useAppStore((state) => state.leagueFilter);
   const setSportFilter = useAppStore((state) => state.setSportFilter);
   const setLeagueFilter = useAppStore((state) => state.setLeagueFilter);
+
+  const { rows: data } = useLeaguesData();
+  const options: Options = mapWithoutDups(data);
 
   return (
     <Grid container spacing={2} sx={{ mb, mt }}>
