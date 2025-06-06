@@ -9,9 +9,8 @@ import {
 } from "@mui/material";
 import { LeaguesListData } from "../types/common";
 
-const SPLeaguesList = ({ data }: { data: LeaguesListData }) => {
-  const headers = ["League", "Sport", "League Alternate"]; //rudimentary but ok for a code challenge
-  const rows: LeaguesListData = data; //probably need to map this later
+const SPLeaguesList = ({ rows }: { rows: LeaguesListData }) => {
+  const headers = ["League", "Sport", "League Alternate"]; //rudimentary but ok for this use case (code challenge)
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -25,14 +24,14 @@ const SPLeaguesList = ({ data }: { data: LeaguesListData }) => {
         <TableBody>
           {rows.map((row) => (
             <TableRow
-              key={row.strLeague || row.strLeagueAlternate}
+              key={row.idLeague}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell align="left" component="th" scope="row">
                 {row.strLeague}
               </TableCell>
-              <TableCell align="right">{row.strSport}</TableCell>
-              <TableCell align="right">{row.strLeagueAlternate}</TableCell>
+              <TableCell align="left">{row.strSport}</TableCell>
+              <TableCell align="left">{row.strLeagueAlternate}</TableCell>
             </TableRow>
           ))}
         </TableBody>
