@@ -15,6 +15,8 @@ You will also see any lint errors in the console.
 ## Notes:
 
 It took more than 90 minutes, I had to switch back and forth since I'm busy with other things with the current company.
+No AI tools used just the usual googling and reading documentation.
+I created the app with CRA. all the rest is 100% my own code.
 
 To do:
 
